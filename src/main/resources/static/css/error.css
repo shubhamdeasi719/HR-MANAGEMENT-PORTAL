@@ -1,0 +1,37 @@
+html, body {
+    height: 100%; /* Full height of the viewport */
+    margin: 0; /* Remove default margin */
+    background-image: url('/images/error.jpg'); /* Set the background image */
+    background-size: 70em; /* Ensure the image covers the entire viewport */
+    background-position: center center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent scrollbars */
+}
+
+/* Main content area */
+.container {
+    flex: 1; /* Allow content to take up available space */
+}
+
+/* Card styling adjustments */
+.card {
+    border-radius: 20px; /* Rounded corners for the card */
+    box-shadow: none; /* No shadow for a cleaner look */
+    backdrop-filter: blur(50px);
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background for content visibility */
+}
+
+/* Card body adjustments for mobile view */
+.card-body {
+    padding: 1.5rem; /* Ensure enough padding inside the card */
+}
+
+/* Footer Section */
+.footer {
+    margin-top: auto; /* Push footer to the bottom */
+}

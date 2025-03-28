@@ -1,0 +1,71 @@
+.navbar {
+	z-index: 1050; /* Higher than the sidebar */
+}
+
+.sidebar {
+	height: 100vh;
+	top: 60px;
+	position: relative;
+	left: 0;
+	z-index: 100;
+	overflow-y: auto;
+}
+
+.sidebar a {
+	padding: 10px 15px;
+	text-decoration: none;
+	display: block;
+	color: #333;
+	font-weight: 600;
+}
+
+.sidebar a span {
+	padding-left: 10px;
+}
+
+.sidebar a:hover {
+	background-color: #ddd;
+}
+
+/* CSS for required field asterisk */
+label.required::after {
+	content: " *";
+	color: red;
+	font-weight: bold;
+}
+
+/* Ensure navbar items and dropdown are aligned to the right side in mobile view */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        text-align: right; /* Align the navbar links to the right */
+    }
+
+    /* Align the links to the right side in mobile view */
+    .navbar-nav {
+        margin-left: auto; /* Push the links to the right */
+    }
+
+    /* Ensure dropdown opens from the right */
+    .dropdown-menu-end {
+        left: auto;
+        right: 0;
+    }
+
+    /* Align the toggler button to the right in mobile view */
+    .navbar-toggler {
+        margin-left: auto; /* Align hamburger button to the right */
+    }
+
+    /* Fix the dropdown placement on mobile */
+    .dropdown-menu {
+        position: absolute;
+        right: 0; /* Align the dropdown to the right side */
+    }
+}
+
+@media (min-width: 992px) {
+    /* For large screens, make sure the navbar items are aligned to the right */
+    .navbar-nav {
+        margin-left: auto;
+    }
+}

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <section>
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="card mt-3 mb-5">
+                    <div class="card-body">
+
+                        <h4 style="text-align: center;">Employee Registration Form</h4>
+                        <hr>
+						<div th:if="${error}" class="alert alert-danger" role="alert">
+						    <p><strong th:text="${error}"></strong></p>
+						</div>
+                        
+                        <form th:action="@{/admin/save-employee}" th:object="${employee}" method="post">
+                            <div class="row">
+                                <!-- Employee Name -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="employeeName" class="form-label required">Employee
+                                        Name</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <input type="text" class="form-control" name="employeeName" id="employeeName"
+                                        th:field="*{employeeName}" required pattern="[A-Za-z ]+"
+                                        title="Employee name must only contain letters and spaces">
+
+                                    <div th:if="${#fields.hasErrors('employeeName')}" class="text-danger">
+                                        <span th:errors="*{employeeName}"></span> <!-- Display error for this field -->
+                                    </div>
+                                </div>
+
+                                <!-- Email Id -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="email" class="form-label required">Email Id</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <input type="email" class="form-control" name="email" id="email" th:field="*{email}"
+                                        required>
+                                    <div th:if="${#fields.hasErrors('email')}" class="text-danger">
+                                        <span th:errors="*{email}"></span>
+                                    </div>
+                                </div>
+
+                              <!-- Gender -->
+								<div class="col-md-3 mt-2">
+								    <label for="gender" class="form-label required">Gender</label>
+								</div>
+								<div class="col-md-9 mt-2">
+								    <!-- Male Radio Button -->
+								    <input class="form-check-input" type="radio" name="gender" th:field="*{gender}" 
+								           id="genderMale" value="male" required> 
+								    <label for="genderMale" class="form-check-label">Male</label>
+								    
+								    <!-- Female Radio Button -->
+								    <input class="form-check-input ms-4" type="radio" name="gender" th:field="*{gender}" 
+								           id="genderFemale" value="female" required> 
+								    <label for="genderFemale" class="form-check-label">Female</label>
+								    
+								    <!-- Other Radio Button -->
+								    <input class="form-check-input ms-4" type="radio" name="gender" th:field="*{gender}" 
+								           id="genderOther" value="other" required> 
+								    <label for="genderOther" class="form-check-label">Other</label>
+								    
+								    <!-- Error Display for Gender -->
+								    <div th:if="${#fields.hasErrors('gender')}" class="text-danger">
+								        <span th:errors="*{gender}"></span>
+								    </div>
+								</div>
+                              
+
+                                <!-- Date of Birth -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="dob" class="form-label required">Date of
+                                        Birth</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <input type="date" class="form-control" name="dob" id="dob" th:value="${employee.dob}"
+                                        required>
+                                    <div th:if="${#fields.hasErrors('dob')}" class="text-danger">
+                                        <span th:errors="*{dob}"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Date of Joining -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="doj" class="form-label required">Date of
+                                        Join</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <input type="date" class="form-control" name="doj" id="doj" th:value="${employee.doj}"
+                                        required>
+                                    <div th:if="${#fields.hasErrors('doj')}" class="text-danger">
+                                        <span th:errors="*{doj}"></span>
+                                    </div>
+                                </div>
+
+                                <!-- PAN Number -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="panNumber" class="form-label required">Pan
+                                        Number</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <input type="text" class="form-control" name="panNumber" id="panNumber"
+                                        th:field="*{panNumber}" required>
+                                    <div th:if="${#fields.hasErrors('panNumber')}" class="text-danger">
+                                        <span th:errors="*{panNumber}"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Mobile Number -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="mobileNumber" class="form-label required">Contact
+                                        Number</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <input type="text" class="form-control" name="mobileNumber"
+                                        th:field="*{mobileNumber}" id="mobileNumber" required>
+                                    <div th:if="${#fields.hasErrors('mobileNumber')}" class="text-danger">
+                                        <span th:errors="*{mobileNumber}"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Aadhar Number -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="aadharNumber" class="form-label required">Aadhar
+                                        Number</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <input type="text" class="form-control" name="aadharNumber"
+                                        th:field="*{aadharNumber}" id="aadharNumber" required>
+                                    <div th:if="${#fields.hasErrors('aadharNumber')}" class="text-danger">
+                                        <span th:errors="*{aadharNumber}"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Bank Account Number -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="bankAccountNumber" class="form-label required">Bank
+                                        Account Number</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <input type="text" class="form-control" name="bankAccountNumber"
+                                        id="bankAccountNumber" th:field="*{bankAccountNumber}" required>
+                                    <div th:if="${#fields.hasErrors('bankAccountNumber')}" class="text-danger">
+                                        <span th:errors="*{bankAccountNumber}"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Department -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="department" class="form-label required">Department</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <select class="form-select" id="department" th:field="*{department}"
+                                        name="department" onchange="updateDesignations()" required>
+                                        <!-- Default "Select Department" option with value as empty, disabled, and selected -->
+                                        <option value="" th:text="|Select Department|" selected> </option>
+                                        <option value="development">Development</option>
+                                        <option value="qa">QA</option>
+                                        <option value="hr">HR</option>
+                                        <option value="networking">Networking</option>
+                                        <option value="marketing">Marketing</option>
+                                        <option value="security">Security</option>
+                                    </select>
+                                    <div th:if="${#fields.hasErrors('department')}" class="text-danger">
+                                        <span th:errors="*{department}"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Designation -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="designation" class="form-label required">Designation</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <select class="form-select" id="designation" th:field="*{designation}"
+                                        name="designation" required>
+                                        <!-- Use a non-disabled default option -->
+                                        <option value="" th:text="|Select Designation|" selected> </option>
+                                    </select>
+                                    <div th:if="${#fields.hasErrors('designation')}" class="text-danger">
+                                        <span th:errors="*{designation}"></span>
+                                    </div>
+                                </div>
+
+
+                                <!-- Previous Company -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="previousCompany" class="form-label required">Previous Company
+                                        Name</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <input type="text" class="form-control" name="previousCompany"
+                                        th:field="*{previousCompany}" id="previousCompany" required
+                                        pattern="^(?=.*[A-Za-z])[A-Za-z0-9\s,.'-]{5,255}$"
+                                        title="Previous company name must contain letter and can include letters, numbers, spaces, commas, periods, apostrophes, and hyphens. The length should be between 5 and 255 characters.">
+                                    <div th:if="${#fields.hasErrors('previousCompany')}" class="text-danger">
+                                        <span th:errors="*{previousCompany}"></span>
+                                    </div>
+                                </div>
+
+
+                                <!-- PF Number -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="pfNumber" class="form-label required">PF
+                                        Account Number</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <input type="text" class="form-control" name="pfNumber" th:field="*{pfNumber}"
+                                        id="pfNumber" required>
+                                    <div th:if="${#fields.hasErrors('pfNumber')}" class="text-danger">
+                                        <span th:errors="*{pfNumber}"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Salary -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="salary" class="form-label required">Salary</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <input type="number" class="form-control" name="salary" th:field="*{salary}"
+                                        id="salary" required>
+                                    <div th:if="${#fields.hasErrors('salary')}" class="text-danger">
+                                        <span th:errors="*{salary}"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Current Address -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="currentAddress" class="form-label required">Current Address</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <textarea rows="" cols="" name="currentAddress" th:field="*{currentAddress}"
+                                        id="currentAddress" style="width: 100%" required
+                                        pattern="^(?=.*[A-Za-z])[A-Za-z0-9\s,.'-]{10,255}$"
+                                        title="Current address must contain letter and can include letters, numbers, spaces, commas, periods, apostrophes, and hyphens. The length should be between 5 and 255 characters."></textarea>
+                                    <div th:if="${#fields.hasErrors('currentAddress')}" class="text-danger">
+                                        <span th:errors="*{currentAddress}"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Permanent Address -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="permanentAddress" class="form-label required">Permanent Address</label>
+                                </div>
+                                <div class="col-md-9 mt-2">
+                                    <textarea rows="" cols="" name="permanentAddress" th:field="*{permanentAddress}"
+                                        id="permanentAddress" style="width: 100%" required
+                                        pattern="^(?=.*[A-Za-z])[A-Za-z0-9\s,.'-]{10,255}$"
+                                        title="Permanent address must contain letter and can include letters, numbers, spaces, commas, periods, apostrophes, and hyphens. The length should be between 5 and 255 characters."></textarea>
+                                    <div th:if="${#fields.hasErrors('permanentAddress')}" class="text-danger">
+                                        <span th:errors="*{permanentAddress}"></span>
+                                    </div>
+                                </div>
+								<!-- Role -->
+								<div class="col-md-3 mt-2">
+								    <label for="role" class="form-label required">Role</label>
+								</div>
+								<div class="col-md-9 mt-2">
+								    <!-- User Role Radio Button -->
+								    <input class="form-check-input" type="radio" name="role" th:field="*{role}" 
+								           id="user" value="user" required> 
+								    <label for="user" class="form-check-label">User</label>
+								    
+								    <!-- Admin Role Radio Button -->
+								    <input class="form-check-input ms-4" type="radio" name="role" th:field="*{role}" 
+								           id="admin" value="admin" required> 
+								    <label for="admin" class="form-check-label">Admin</label>
+								    
+								    <!-- Error Display for Role -->
+								    <div th:if="${#fields.hasErrors('role')}" class="text-danger">
+								        <span th:errors="*{role}"></span>
+								    </div>
+								</div>
+								
+								
+								
+                                <!-- Status -->
+                                <div class="col-md-3 mt-2">
+                                    <label for="status" class="form-check-label required">Status</label>
+                                </div>
+                                <div class="col-md-9 mt-2 form-check form-switch">
+                                    <input style="font-size: 26px" class="form-check-input ms-1 mb-3" type="checkbox"
+                                        name="status" th:field="*{status}" id="status"
+                                        th:checked="${employee != null && employee.status != null ? employee.status : false}">
+                                    <div th:if="${#fields.hasErrors('status')}" class="text-danger">
+                                        <span th:errors="*{status}"></span>
+                                    </div>
+                                </div>
+
+                                <hr>
+
+                                <div class="container text-center mt-2 mb-3">
+                                    <input type="submit" class="btn btn-success" style="width: 25%" value="Submit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

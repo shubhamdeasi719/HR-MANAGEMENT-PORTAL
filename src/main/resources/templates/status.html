@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<section>
+		<div class="conatiner mt-5">
+			<table id="example" class="display novrap table table-bordered"
+				style="width: 100%">
+				<thead>
+					<tr>
+						<th class="text-center">S.no</th>
+						<th class="text-center">Employee Id</th>
+						<th class="text-center">Name</th>
+						<th class="text-center">Position</th>
+						<th class="text-center">Department</th>
+						<th class="text-center">Subject</th>
+						<th class="text-center">Description</th>
+						<th class="text-center">Date</th>
+						<th class="text-center">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="e,i: ${cmpList}">
+						<td class="text-center" th:text="${i.index+1}"></td>
+						<td class="text-center" th:text="'6233'+${e.employee.employeeId}"></td>
+						<td class="text-center" th:text="${e.empName}"></td>
+						<td class="text-center" th:text="${e.position}"></td>
+						<td class="text-center" th:text="${e.department}"></td>
+						<td class="text-center" th:text="${e.subject}"></td>
+						<td class="text-center" th:text="${e.text}"></td>
+						<td class="text-center" th:text="${e.addedDate}"></td>
+						<td class="text-center" style="cursor: pointer;"><span
+							th:if="${e.status == 'pending'}"> <!-- Action icons, with proper spacing -->
+								<div class="d-flex justify-content-center">
+									<i th:onclick="|adminAction(${e.id},'Approve')|"
+										style="color: green;" class="fas fa-check-circle"
+										title="Approve"></i> <i
+										th:onclick="|adminAction(${e.id},'Denied')|"
+										style="color: red;" class="fas fa-times-circle ms-3"
+										title="Denied"></i> <i
+										th:onclick="|adminAction(${e.id},'Cancelled')|"
+										style="color: yellow;" class="fas fa-ban ms-3"
+										title="Cancelled"></i>
+								</div>
+						</span> <span th:unless="${e.status == 'pending'}"> <span
+								th:text="${e.status}"></span>
+						</span></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+	</section>
+</body>
+</html>

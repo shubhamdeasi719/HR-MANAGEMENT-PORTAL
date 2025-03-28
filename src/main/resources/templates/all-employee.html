@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<section>
+		<h4 style="text-align: center;" class="mt-3">All Employee Data</h4>
+		<hr>
+		
+		<div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+    		<p><strong th:text="${success}"></strong></p>
+    		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+
+		<div th:if="${error}" class="alert alert-danger" role="alert">
+		    <p th:text="${error}"></p>
+		</div>
+		
+		<div class="container-fluid mt-3 table-responsive">
+
+
+			<table id="example" class="display nowrap table table-bordered" style="width:100%; background-color: white;">
+				<thead>
+					<tr>
+						<th>Employee ID</th>
+						<th>Employee Name</th>
+						<th>Email</th>
+						<th>Gender</th>
+						<th>Date of Birth</th>
+						<th>Date of Join</th>
+						<th>Pan Number</th>
+						<th>Contact Number</th>
+						<th>Aadhaar Number</th>
+						<th>Bank Account Number</th>
+						<th>Department</th>
+						<th>Designation</th>
+						<th>Previous Company Name</th>
+						<th>PF Account Number</th>
+						<th>Salary</th>
+						<th>Current Address</th>
+						<th>Permanent Address</th>
+						<th>Status</th>
+						<th>Role</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="e : ${allEmployees}">
+						<td th:text="'6233'+${e.employeeId}"></td>
+						<td th:text="${e.employeeName}"></td>
+						<td th:text="${e.email}"></td>
+						<td th:text="${e.gender}"></td>
+						<td th:text="${e.dob}"></td>
+						<td th:text="${e.doj}"></td>
+						<td th:text="${e.panNumber}"></td>
+						<td th:text="${e.mobileNumber}"></td>
+						<td th:text="${e.aadharNumber}"></td>
+						<td th:text="${e.bankAccountNumber}"></td>
+						<td th:text="${e.department}"></td>
+						<td th:text="${e.designation}"></td>
+						<td th:text="${e.previousCompany}"></td>
+						<td th:text="${e.pfNumber}"></td>
+						<td th:text="${e.salary}"></td>
+						<td th:text="${e.currentAddress}"></td>
+						<td th:text="${e.permanentAddress}"></td>
+						<td th:text="${e.status}"></td>
+						<td th:text="${e.role}"></td>
+						<td>
+							<div class="action-icons" style="position: relative; display: inline-block;">
+								<a th:onclick="|updateRecord(${e.employeeId})|" class="fa-solid fa-pen-to-square ms-2"
+									style="color: blue; cursor: pointer; position: relative;" title="Update"></a>
+
+								<a th:onclick="|deleteRecord(${e.employeeId})|" class="fas fa-trash ms-2" style="color: red; cursor: pointer; position: relative;"
+									title="Delete"></a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+	</section>
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <section>
+    <div class="container">
+      <div class="row justify-content-center mt-3">
+        <div class="col-12 col-md-8">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="text-center">Share Your Thought's</h4>
+              <hr>
+              <form id="postForm" th:action="@{/admin/save-post}" method="post">
+                <div class="mt-3">
+                  <label for="postTitle" class="form-label required">Post Title</label>
+                  <input class="form-control" type="text" name="postTitle" id="postTitle" required />
+                </div>
+                <div class="mt-3">
+                  <label for="postDiscription" class="form-label required">Description</label>
+                  <textarea rows="5" class="form-control" placeholder="Add here something crazy..." name="postDiscription" id="postDiscription" required></textarea>
+                </div>
+                <div class="text-center mt-3">
+                  <input type="submit" class="btn btn-primary" value="Post" style="width: 100px;">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 mt-3 mb-3">
+          <div class="card mb-5">
+            <div class="card-body">
+              <h4 class="text-center">Your Post's</h4>
+              <dl th:each="e : ${post}">
+                <dt><span th:text="${e.postTitle}"></span><small style="float: right;" th:text="${e.postDate}"></small></dt>
+                <dd th:text="${e.postDiscription}"></dd>
+              </dl>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>  </section>
+</body>
+</html>

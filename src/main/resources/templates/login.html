@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{common-base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<section>    
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 col-sm-8 col-10 card login-card">
+                <div class="card-body login-form">
+                    <div class="text-center">
+                        <img src="images/login.png" alt="login img" class="login-img mt-3">
+                        <h3><b>Login Here</b></h3>
+                    </div>
+                    <!-- Error Alert (displayed when there is an error) -->
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${error}">
+                       <p><strong th:text="${error}"></strong></p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    
+                    <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+					    <p><strong th:text="${success}"></strong></p>
+					    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+
+                    <form th:action="@{/perform_login}" method="post">
+                        <div class="mb-3">
+                            <label for="username" class="form-label required">Employee Id</label>
+                            <input type="text" name="username" id="username" class="form-control" required="required">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label required">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" required="required">
+                        </div>
+                        <div class="text-center mt-3 mb-3">
+                            <input type="submit" value="Login" class="btn btn-primary">
+                        </div>
+                        <p class="text-center">Don't have a password? <a th:href="@{/forgot-password}" style="text-decoration: none;">Forgot Password</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

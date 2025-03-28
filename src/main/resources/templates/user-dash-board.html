@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user-base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<section>
+		<div class="row mb-5">
+			
+			<div class="col-md-8">
+				<div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+					    <p><strong th:text="${success}"></strong></p>
+					    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+				<div class="card">
+					<div class="card-body">
+
+						<h5>Recent Activity</h5>
+						<hr>
+						<div class="table-responsive">
+							<table class="table table-bordered"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th class="text-center">S.No</th>
+										<th class="text-center">Subject</th>
+										<th class="text-center">Description</th>
+										<th class="text-center">Date</th>
+										<th class="text-center">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="e,i: ${cmpList}">
+										<td class="text-center" th:text="${i.index+1}"></td>
+										<td class="text-center" th:text="${e.subject}"></td>
+										<td class="text-center" th:text="${e.text}"></td>
+										<td class="text-center" th:text="${e.addedDate}"></td>
+										<td class="text-center"><span th:text="${e.status}"></span>
+										</td>
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			<div class="col-md-4 mt-1">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="text-center">Upcoming Birthday's</h5>
+						<hr>
+						<div class="d-flex flex-column justify-content-around w-100 mt-2">
+							<div th:each="employee : ${birthDayList}" class="d-flex justify-content-around w-100 mt-2">
+									
+								<!-- If an image exists, display it -->
+				                <div th:if="${employee.imagePath}">
+				                    <img th:src="@{${employee.imagePath}}" alt="employee image" style="width: 40px; height: 40px; border-radius: 50%">    
+				                </div>
+				
+				                <!-- If no image exists -->
+				                <div th:if="${#strings.isEmpty(employee.imagePath)}">
+				                    <img src="/images/default_emp.png" alt="default employee image" style="width: 40px; height: 40px; border-radius: 50%">
+				                </div>
+				                
+								<!-- Employee Name -->
+								<b class="mt-1" th:text="${employee.employeeName}"></b>
+
+								<!-- Birthday Icon -->
+								<i class="fa-solid fa-cake-candles mt-1" style="color: red"></i>
+
+								<!-- Employee's Upcoming Birthday -->
+								<span class="mt-1" th:text="${employee.dob}"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+</body>
+</html>

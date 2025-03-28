@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{user-base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<section>
+	        <!-- Error Handling -->
+        <div th:if="${error != null}">
+            <div class="alert alert-danger" th:text="${error}"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 offset-md-3 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="container text-center mt-2">
+                         <!-- If an image exists, display it -->
+						<div th:if="${employee.imagePath}">
+						    <img th:src="@{${employee.imagePath}}" alt="Employee Image" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px"/>
+						</div>
+						
+						<!-- If no image exists -->
+						<div th:if="${#strings.isEmpty(employee.imagePath)}">
+						     <img src="/images/default_emp.png" alt="default employee image" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px">
+						</div>
+						 
+						  <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+						    	<p><strong th:text="${success}"></strong></p>
+						    	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						 </div>
+
+                            <h4 th:text="${employee.employeeName}"></h4>
+                            <p>
+                                <i th:text="${employee.designation}"></i>
+                            </p>
+                            <hr>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td style="text-align: left;"><b>Employee Id</b></td>
+                                        <td th:text="'6233' + ${employee.employeeId}"
+                                            style="text-align: left;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td style="text-align: left;"><b>Email Id</b></td>
+                                        <td th:text="${employee.email}" style="text-align: left;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td style="text-align: left;"><b>Date Of Birth</b></td>
+                                        <td th:text="${employee.dob}" style="text-align: left;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">4</th>
+                                        <td style="text-align: left;"><b>Date Of Join</b></td>
+                                        <td th:text="${employee.doj}" style="text-align: left;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">5</th>
+                                        <td style="text-align: left;"><b>Gender</b></td>
+                                        <td th:text="${employee.gender}" style="text-align: left;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">6</th>
+                                        <td style="text-align: left;"><b>Mobile Number</b></td>
+                                        <td th:text="${employee.mobileNumber}"
+                                            style="text-align: left;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">7</th>
+                                        <td style="text-align: left;"><b>Current Address</b></td>
+                                        <td th:text="${employee.currentAddress}"
+                                            style="text-align: left;"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">8</th>
+                                        <td style="text-align: left;"><b>Permanent Address</b></td>
+                                        <td th:text="${employee.permanentAddress}"
+                                            style="text-align: left;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr>
+                            <a th:href="@{/user/updateUserProfile(employeeId=${employee.employeeId})}" class="btn btn-primary">Update Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+</body>
+</html>
