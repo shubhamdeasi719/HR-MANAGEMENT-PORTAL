@@ -30,7 +30,6 @@ It provides functionalities for employee data management, user authentication, a
     * Hibernate
     * MySQL
 * **Frontend:**
-    * Thymeleaf
     * HTML, CSS, Bootstrap, JavaScript
 * **Testing:**
     * JUnit
@@ -40,6 +39,8 @@ It provides functionalities for employee data management, user authentication, a
     * GitHub
 * **Build Tool:**
     * Maven
+* **Template Engine**
+    * Thymeleaf 
 
 ## Setup Instructions
 
